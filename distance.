@@ -1,0 +1,31 @@
+#define ECHOpin 5
+#define TRIGpin 3
+
+long duration;
+int distance;
+void setup()
+ {
+ pinMode(TRIGpin,OUTPUT);
+ pinMode(ECHOpin,INPUT);
+Serial.begin(9600);
+Serial.println("test for the ultrasonic senor HC-SR04");
+Serial.println("with the arduino uno"); 
+
+
+}
+
+void loop() {
+  digitalWrite(TRIGpin,LOW);
+  delayMicroseconds(4);
+  digitalWrite(TRIGpin,HIGH);
+  delayMicroseconds(15);
+  digitalWrite(TRIGpin,LOW);
+  duration=pulseIn(ECHOpin,HIGH);
+  distance=duration*(0.034/2);
+  Serial.println("\ndistance: ");
+  Serial.print(distance);
+  Serial.print("cm");
+  delay(1000);
+
+
+}
